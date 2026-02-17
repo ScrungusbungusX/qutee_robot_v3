@@ -1,0 +1,10 @@
+ 
+menu "Project-specific overrides"
+
+config FREERTOS_HZ_OVERRIDE
+    int "Tick rate override"
+    default 1000
+    help
+      Overrides the FreeRTOS tick rate.
+
+endmenu
