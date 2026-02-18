@@ -17,8 +17,14 @@
 /* Author: zerom, Ryu Woon Jung (Leon) */
 
 #include <algorithm>
+#include "port_handler.h"
+#include "packet_handler.h"
+#include <vector>
+#include <map>
 
-#if defined(__linux__)
+#if defined(ESP_PLATFORM)
+#include "group_bulk_write.h"
+#elif defined(__linux__)
 #include "group_bulk_write.h"
 #elif defined(__APPLE__)
 #include "group_bulk_write.h"

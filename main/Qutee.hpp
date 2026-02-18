@@ -23,7 +23,7 @@
 #include "nvs.h"
 #define STORAGE_NAMESPACE "storage"
 
-//#include "arduino.h"
+#include "Arduino.h"
 #include <Wire.h>
 
 #include <Adafruit_Sensor.h>
@@ -34,7 +34,7 @@
 #include "Dynamixel2Arduino.h"
 #include "utility/port_handler.h"
 #include "QuteeDxlPortHandler.hpp"
-//#include "QuteeController.hpp"
+#include "QuteeController.hpp"
 
 // TFT pins
 #define TFT_CS         10    // example GPIO for CS
@@ -58,15 +58,16 @@ public:
   
   const float DEG_2_RAD = 0.01745329251f; //trig functions require radians, BNO055 outputs degrees
   
-  Qutee():
+  Qutee() :
     _states(NB_STEPS),
     _actions(NB_STEPS),
     _dxl_port(UART_NUM_1),
-    _tft(TFT_CS, TFT_DC, TFT_RST),
+    _tft(static_cast<int8_t>(TFT_CS),
+         static_cast<int8_t>(TFT_DC),
+         static_cast<int8_t>(TFT_RST)),
     _bno(55, 0x28)
-  {        
-    
-  }
+  {}
+
   void run_episode();
   void init();
   void scan();
@@ -113,7 +114,8 @@ private:
   static const int DXL_IDs[];
   static const uint8_t DXL_ID_CNT = 12;
   QuteeDxlPortHandler _dxl_port;
-  Dynamixel2Arduino _dxl;
+  //Dynamixel2Arduino _dxl;
+  DYNAMIXEL::Dynamixel2Arduino _dxl;
   Adafruit_ST7789 _tft;
   Adafruit_BNO055 _bno;
   Adafruit_MAX17048 _maxlipo;

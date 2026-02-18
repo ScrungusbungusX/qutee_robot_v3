@@ -17,6 +17,8 @@
 #ifndef DYNAMIXEL_2_ARDUINO_H_
 #define DYNAMIXEL_2_ARDUINO_H_
 
+#include "Arduino.h"
+#include <Wire.h>
 
 #include "utility/master.h"
 #include "utility/slave.h"
@@ -47,6 +49,8 @@ enum D2ALibErrorCode
   D2A_LIB_ERROR_NOT_SUPPORT_FUNCTION,
   D2A_LIB_ERROR_UNKNOWN_MODEL_NUMBER
 };
+
+namespace DYNAMIXEL {
 
 class Dynamixel2Arduino : public DYNAMIXEL::Master
 {
@@ -105,7 +109,7 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
      * @param id DYNAMIXEL Actuator's ID or BROADCAST ID (0xFE). (default : 0xFE)
      * @return It returns true(1) on success, false(0) on failure.
      */
-    using DYNAMIXEL::Master::ping;    
+    using DYNAMIXEL::Master::ping;
     bool ping(uint8_t id = DXL_BROADCAST_ID);
 
     /**
@@ -470,7 +474,7 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
       uint8_t item_idx, uint8_t id, int32_t data, uint32_t timeout = 100);  
 };
 
-
+}
 
 
 #endif /* DYNAMIXEL_2_ARDUINO_H_ */

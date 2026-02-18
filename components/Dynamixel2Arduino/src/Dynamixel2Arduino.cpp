@@ -15,6 +15,7 @@
 *******************************************************************************/
 
 #include "Dynamixel2Arduino.h"
+#include "utility/master.h"
 
 namespace DYNAMIXEL{
 

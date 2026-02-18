@@ -22,17 +22,9 @@
 #ifndef DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_PORTHANDLER_H_
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_PORTHANDLER_H_
 
-#if defined(__linux__)
+#if defined(CONFIG_IDF_TARGET_ESP32)
 #define WINDECLSPEC
-#elif defined(__APPLE__)
-#define WINDECLSPEC
-#elif defined(_WIN32) || defined(_WIN64)
-  #ifdef WINDLLEXPORT
-  #define WINDECLSPEC __declspec(dllexport)
-  #else
-  #define WINDECLSPEC __declspec(dllimport)
-  #endif
-#elif defined(ARDUINO) || defined(__OPENCR__) || defined(__OPENCM904__) || defined(ARDUINO_OpenRB)
+#else
 #define WINDECLSPEC
 #endif
 

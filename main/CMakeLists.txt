@@ -13,7 +13,7 @@ endif()
 
 set(EXTRA_COMPONENT_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}/../managed_components
-    #${CMAKE_CURRENT_SOURCE_DIR}/../components/arduino-esp32
+    ${CMAKE_CURRENT_SOURCE_DIR}/../components/arduino
     ${CMAKE_CURRENT_SOURCE_DIR}/../components/Adafruit_BNO055
     ${CMAKE_CURRENT_SOURCE_DIR}/../components/Adafruit_ST7789
     ${CMAKE_CURRENT_SOURCE_DIR}/../components/Adafruit-GFX-Library
