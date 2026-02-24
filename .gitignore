@@ -1,0 +1,13 @@
+# ESP-IDF build outputs
+build/
+sdkconfig.old
+sdkconfig.bak
+
+# Component manager cache (do not commit)
+managed_components/
+
+# Python/OS junk
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
