@@ -30,7 +30,7 @@ void QuteeDxlPortHandler::begin(int baud )
     ESP_ERROR_CHECK(uart_driver_install(uart_num_, uart_buffer_size, \
                                     uart_buffer_size, 0, NULL, 0));
 
-    uart_set_mode(UART_NUM_1, UART_MODE_RS485_APP_CTRL);
+    uart_set_mode(uart_num_, UART_MODE_UART);
 //    UART1.rs485_conf.rs485rxby_tx_en = 0;  // don't send while receiving => collision avoidance
 //    UART1.rs485_conf.rs485tx_rx_en = 1;  // loopback (1), so collision detection works
 
@@ -79,7 +79,7 @@ size_t QuteeDxlPortHandler::write(uint8_t *buf, size_t len)
 
     //ret = port_.write(buf, len);
     ret = uart_write_bytes(uart_num_, buf, len);  
-    ESP_ERROR_CHECK(uart_flush(uart_num_));
+    //ESP_ERROR_CHECK(uart_flush(uart_num_)); // stop this terribleness
 
     return ret;     
 }
