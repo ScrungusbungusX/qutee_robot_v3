@@ -1,74 +1,31 @@
+#pragma once
 #ifndef QUTEE_DYNAMIXEL_PORT_HANDLER_HPP_
 #define QUTEE_DYNAMIXEL_PORT_HANDLER_HPP_
 
-#include <esp_log.h>
-#include <math.h>
-#include <hal/misc.h>
-#include <hal/uart_types.h>
-#include <soc/uart_periph.h>
-#include <soc/dport_reg.h>
-#include <soc/uart_struct.h>
-#include <driver/gpio.h>
 #include <driver/uart.h>
-
-#include <stdlib.h>
-
-#include "Dynamixel2Arduino.h"
+#include <driver/gpio.h>
 #include "utility/port_handler.h"
 
 class QuteeDxlPortHandler : public DXLPortHandler
 {
-  public:
-    QuteeDxlPortHandler(uart_port_t uart_num);
+public:
+    explicit QuteeDxlPortHandler(uart_port_t uart_num, gpio_num_t dir_pin);
+
     virtual void begin();
-    virtual void begin(int baud );
+    virtual void begin(int baud);
     virtual void end();
     virtual int available();
     virtual int read();
-    virtual size_t write(uint8_t c) override;
-    virtual size_t write(uint8_t *buf, size_t len) override;
+    virtual size_t write(uint8_t);
+    virtual size_t write(uint8_t*, size_t);
 
-  private:
-    const uart_port_t uart_num_;
+private:
+    uart_port_t uart_num_;
+    gpio_num_t dir_pin_;
     unsigned long baud_;
-    const char* TAG = "ESP2Dynamixel";
-};
 
-#endif
-#ifndef QUTEE_DYNAMIXEL_PORT_HANDLER_HPP_
-#define QUTEE_DYNAMIXEL_PORT_HANDLER_HPP_
-
-#include <esp_log.h>
-#include <math.h>
-#include <hal/misc.h>
-#include <hal/uart_types.h>
-#include <soc/uart_periph.h>
-#include <soc/dport_reg.h>
-#include <soc/uart_struct.h>
-#include <driver/gpio.h>
-#include <driver/uart.h>
-
-#include <stdlib.h>
-
-#include "Dynamixel2Arduino.h"
-#include "utility/port_handler.h"
-
-class QuteeDxlPortHandler : public DXLPortHandler
-{
-  public:
-    QuteeDxlPortHandler(uart_port_t uart_num);
-    virtual void begin();
-    virtual void begin(int baud );
-    virtual void end();
-    virtual int available();
-    virtual int read();
-    virtual size_t write(uint8_t c) override;
-    virtual size_t write(uint8_t *buf, size_t len) override;
-
-  private:
-    const uart_port_t uart_num_;
-    unsigned long baud_;
-    const char* TAG = "ESP2Dynamixel";
+    inline void setTX();
+    inline void setRX();
 };
 
 #endif
